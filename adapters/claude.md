@@ -1,0 +1,10 @@
+# Claude Code
+
+Add the following to `~/.claude/CLAUDE.md` or a user rule under
+`~/.claude/rules/`:
+
+```markdown
+Use `~/.agents/global.md` as global instructions. Resolve its referenced paths
+from `~/.agents`. Always apply `global.md`; when its routing table matches the
+current task, read and apply the named resource before acting.
+```

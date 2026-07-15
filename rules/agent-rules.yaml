@@ -1,0 +1,59 @@
+schema_version: 1
+name: Agent Operating Standard
+entrypoint: global.md
+
+authority:
+  precedence:
+    - platform_and_safety
+    - current_user_request
+    - nearest_repository_instructions
+    - global_agent_rules
+  conflict_behavior: follow_higher_priority_and_report_material_conflicts
+
+resources:
+  decision_matrix: rules/decision-matrix.md
+  research_policy: rules/research-policy.md
+
+skills:
+  ticket_work:
+    file: skills/ticket-work.md
+    triggers:
+      - ticket_identifier_at_conversation_start
+      - ticket_like_task_topic
+  clarify:
+    file: skills/clarify.md
+    triggers:
+      - missing_material_requirement
+      - consequential_choice
+      - scope_change
+  research:
+    file: skills/research.md
+    triggers:
+      - investigation
+      - unfamiliar_code
+      - factual_uncertainty
+      - external_lookup
+  task_execution:
+    file: skills/task-execution.md
+    triggers:
+      - code_or_file_change
+  verification:
+    file: skills/verification.md
+    triggers:
+      - validate_change
+      - report_completion
+
+ticket_context:
+  roots:
+    - "~/Tickets"
+    - "~/tickets"
+  filename: context.md
+  create_only_with_user_approval: true
+  refusal_behavior: treat_task_as_session_bound
+
+defaults:
+  change_style: surgical
+  reuse_existing_patterns: true
+  verification: smallest_useful_check
+  communication: concise_result_first
+  broad_error_fallbacks: forbidden
