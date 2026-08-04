@@ -1,4 +1,7 @@
 * text=auto
+.gitattributes text eol=lf
 *.md text eol=lf
 *.ps1 text eol=lf
 *.sh text eol=lf
+*.yaml text eol=lf
+managed-files.txt text eol=lf

@@ -1,18 +1,38 @@
-schema_version: 1
+schema_version: 2
 name: Agent Operating Standard
-entrypoint: global.md
+entrypoint: AGENTS.md
+routing_source: catalog.md
+machine_readable_mirror: true
+
+distribution:
+  authoring_source: maintained_git_repository
+  runtime_root: "~/.agents"
+  runtime_mutability: protected_by_change_control
 
 authority:
   precedence:
     - platform_and_safety
     - current_user_request
     - nearest_repository_instructions
+    - machine_local_agent_rules
     - global_agent_rules
   conflict_behavior: follow_higher_priority_and_report_material_conflicts
 
 resources:
+  catalog: catalog.md
+  change_control: change-control.md
+  adapter_notes: adapter-notes.md
   decision_matrix: rules/decision-matrix.md
   research_policy: rules/research-policy.md
+  machine_local_entrypoint: "~/.agent-notes/shared/AGENTS.md"
+
+personas:
+  default:
+    file: personas/default.md
+    use_when: no_other_persona_is_selected
+  pragmatic_reviewer:
+    file: personas/pragmatic-reviewer.md
+    use_when: selected_by_code_review_on_my_behalf_skill
 
 skills:
   ticket_work:
@@ -37,6 +57,20 @@ skills:
     file: skills/task-execution.md
     triggers:
       - code_or_file_change
+  code_review_on_my_behalf:
+    file: skills/code-review-on-my-behalf.md
+    triggers:
+      - explicit_code_review_on_users_behalf
+      - explicit_review_reply_on_users_behalf
+  global_local_news_brief:
+    file: skills/global-local-news-brief/SKILL.md
+    triggers:
+      - explicit_global_local_news_brief_invocation
+      - news_catch_up
+      - global_news
+      - romanian_news
+      - continuing_news_story
+      - misinformation_or_news_fact_check
   verification:
     file: skills/verification.md
     triggers:
@@ -52,8 +86,16 @@ ticket_context:
   refusal_behavior: treat_task_as_session_bound
 
 defaults:
+  persona: personas/default.md
   change_style: surgical
   reuse_existing_patterns: true
   verification: smallest_useful_check
   communication: concise_result_first
   broad_error_fallbacks: forbidden
+  automatic_external_state_sync: only_when_narrowly_defined_by_routed_skill
+
+protected_runtime:
+  root: "~/.agents"
+  direct_or_indirect_agent_mutation_requires: change-control.md
+  ordinary_approval_is_sufficient: false
+  user_run_bootstrap_is_out_of_band_deployment: true

@@ -7,6 +7,7 @@ surfaces the actual decision; do not transfer routine investigation to the user.
 
 | Condition | Required behavior |
 | --- | --- |
+| Any direct or indirect agent mutation under `~/.agents/` | Follow `change-control.md`; ordinary approval is never sufficient. |
 | Destructive, irreversible, or difficult-to-undo action | Describe the exact action and consequence; wait for approval. |
 | Requested scope must expand | Explain the added scope and why it is needed; wait for alignment. |
 | Multiple valid paths have materially different behavior, cost, compatibility, or maintenance impact | Present the smallest useful set of options and recommend one. |

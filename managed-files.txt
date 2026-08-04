@@ -1,0 +1,17 @@
+AGENTS.md
+adapter-notes.md
+catalog.md
+change-control.md
+global.md
+personas/default.md
+personas/pragmatic-reviewer.md
+rules/agent-rules.yaml
+rules/decision-matrix.md
+rules/research-policy.md
+skills/clarify.md
+skills/code-review-on-my-behalf.md
+skills/global-local-news-brief/SKILL.md
+skills/research.md
+skills/task-execution.md
+skills/ticket-work.md
+skills/verification.md
